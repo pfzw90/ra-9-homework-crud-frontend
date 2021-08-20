@@ -3,6 +3,7 @@ export default function useStorage(storage, key, jsonify = false) {
     const [value, setValue] = useState( jsonify ? JSON.parse(storage.getItem(key)) : storage.getItem(key) );
     
     useEffect(() => {
+
          if (value === null) { 
              storage.removeItem(key); 
              return; 

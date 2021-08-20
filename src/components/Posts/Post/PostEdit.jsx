@@ -28,14 +28,14 @@ export default function PostEdit(props) {
         e.preventDefault();
         const id = (isNew) ? 0 : props.match.params.id
         handleEdit({id, content: inputRef.current.value});
-        setCurrentPost()
+        setCurrentPost(null)
         history.push(`/posts/`);
     }
 
     const handleCancel = (e) => {
         e.preventDefault();
-        if (!isNew) setCurrentPost()
-        history.push('/posts/')
+        if (isNew) history.push('/posts/')
+        else history.goBack()
     }
 
     return (
