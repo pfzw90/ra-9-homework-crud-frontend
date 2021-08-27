@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
 import Posts from './components/Posts/Posts';
 import './App.css';
 import PostDetails from './components/Posts/Post/PostDetails';
@@ -10,10 +10,15 @@ function App() {
     <PostsProvider>
     <Router>
       <Switch>
-      <Route path="/posts/:id([0-9]+)/edit" component={PostEdit}/>
-      <Route path="/posts/:id([0-9]+)" exact component={PostDetails} />
-      <Route path="/posts/new" component={PostEdit}/>
-      <Route path="/posts" component={Posts} />
+      
+        <Route exact path="/">
+          <Redirect to="/posts"/>
+        </Route>
+        <Route path="/posts/:id([0-9]+)/edit" component={PostEdit}/>
+        <Route path="/posts/:id([0-9]+)" exact component={PostDetails} />
+        <Route path="/posts/new" component={PostEdit}/>
+        <Route path="/posts" component={Posts} />
+      
       </Switch>
     </Router>
     </PostsProvider>
